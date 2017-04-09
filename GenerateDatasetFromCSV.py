@@ -20,7 +20,7 @@ def main():
         else:
             print bf
             print af
-        print "*******"
+        print "********"
 
         output_base = str(bf).split("BENIGN")[0]
         output_temp = output_base+"_temp.csv"
