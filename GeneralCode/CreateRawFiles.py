@@ -16,6 +16,13 @@ def main():
     pctSize_ar= [56,100]    #bytes
     count_ar = [1000,5000]
 
+
+    Mode = raw_input('Chose Mode: 0 =  BENIGN, 1 = ATTACKED')
+    while(Mode >1 or Mode <0):
+        Mode = raw_input('Chose Mode: 0 =  BENIGN, 1 = ATTACKED')
+
+    ModeDescription =  "BENIGN" if Mode==0 else "ATTACKED"
+
     PathToSave = "/root/Desktop/datasets/" + time.strftime("%d_%m_%I:%M")
 
 
@@ -46,14 +53,16 @@ def main():
                         #print (line_parts[6])
                         row = row+1
                     print "FINISHED: interval: {0} , pct_size: {1}, count: {2}, trial {3}".format(interval.__str__(),packetSize,count,iteration)
-                createCSVfile(rtt_vec,interval,packetSize,count,PathToSave)
+                createCSVfile(rtt_vec,interval,packetSize,count,PathToSave,ModeDescription)
+
+    print "Process has been DONE!!!"
 
 
-def createCSVfile(array,interval,packetSize,count,PathToSave):
+def createCSVfile(array,interval,packetSize,count,PathToSave,ModeDescription):
     if not os.path.exists(PathToSave):
        os.makedirs(PathToSave)
 
-    np.savetxt(PathToSave+"/Int={0}_PcSz={1}_Cnt={2}.csv".format(interval.__str__(),packetSize,count),array, delimiter=",",fmt='%.3f')
+    np.savetxt(PathToSave+"/Int={0}_PcSz={1}_Cnt={2}_{3}.csv".format(interval.__str__(),packetSize,count,ModeDescription),array, delimiter=",",fmt='%.3f')
 
 
 def run_command(command):
