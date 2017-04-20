@@ -7,8 +7,11 @@ import glob
 
 
 def main():
-    BenignFolderPath="/root/Desktop/datasets/2_ds/23_03_04_52_Benign"
-    AttackedFolderPath="/root/Desktop/datasets/2_ds/23_03_05_09_Attacked"
+    #################### CHANGE HERE !! ####################
+    BenignFolderPath="/root/Desktop/datasets/20_04_06:02_BENIGN"
+    AttackedFolderPath="/root/Desktop/datasets/20_04_06:16_ATTACKED"
+    #########################################################
+
     benignFiles=sorted(glob.glob(BenignFolderPath+"/*.csv"))
     attackedFiles=sorted(glob.glob(AttackedFolderPath+"/*.csv"))
 
