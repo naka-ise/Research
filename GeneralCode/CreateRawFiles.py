@@ -17,13 +17,13 @@ def main():
     count_ar = [1000,5000]
 
 
-    Mode = raw_input('Chose Mode: 0 =  BENIGN, 1 = ATTACKED')
-    while(Mode >1 or Mode <0):
+    Mode = raw_input('Chose Mode: 0 =  BENIGN, 1 = ATTACKED :  ')
+    while(str(Mode) != "1" and str(Mode) != "0"):
         Mode = raw_input('Chose Mode: 0 =  BENIGN, 1 = ATTACKED')
 
-    ModeDescription =  "BENIGN" if Mode==0 else "ATTACKED"
+    ModeDescription =  "BENIGN" if str(Mode) == "0" else "ATTACKED"
 
-    PathToSave = "/root/Desktop/datasets/" + time.strftime("%d_%m_%I:%M")
+    PathToSave = "/root/Desktop/datasets/" + time.strftime("%d_%m_%I:%M") + "_{0}".format(ModeDescription)
 
 
     dst = "192.168.3.13"
@@ -50,10 +50,11 @@ def main():
                             0] == "rtt" or line_parts[0] == count.__str__():
                             continue
                         rtt_vec[row,iteration] = line_parts[6].split('=')[1]
-                        #print (line_parts[6])
+                        #print (l1ine_parts[6])
                         row = row+1
                     print "FINISHED: interval: {0} , pct_size: {1}, count: {2}, trial {3}".format(interval.__str__(),packetSize,count,iteration)
                 createCSVfile(rtt_vec,interval,packetSize,count,PathToSave,ModeDescription)
+                raw_input("###############################################  Press Enter Key To Continue  ###################################")
 
     print "Process has been DONE!!!"
 
