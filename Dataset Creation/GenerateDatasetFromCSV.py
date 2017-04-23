@@ -9,15 +9,17 @@ import glob
 def main():
     #################### CHANGE HERE !! ####################
     BenignFolderPath="/root/Desktop/datasets/20_04_06:02_BENIGN"
-    AttackedFolderPath="/root/Desktop/datasets/20_04_06:16_ATTACKED"
+    AttackedFolderPath="/root/Desktop/datasets/20_04_06:56_ATTACKED"
     #########################################################
 
     benignFiles=sorted(glob.glob(BenignFolderPath+"/*.csv"))
     attackedFiles=sorted(glob.glob(AttackedFolderPath+"/*.csv"))
 
     for bf,af in zip(benignFiles,attackedFiles):
-        b_base=str(bf)[str(bf).index("Int="):str(bf).index("_BENIGN")]
-        a_base=str(af)[str(af).index("Int="):str(af).index("_ATTACKED")]
+        #print str(bf).index("Int=")
+        #print str(bf).index("_BENIGN")
+        b_base=str(bf)[str(bf).index("Int="):str(bf).index("_BENIGN.csv")]
+        a_base=str(af)[str(af).index("Int="):str(af).index("_ATTACKED.csv")]
         if(a_base!=b_base):
             print "Iterate files not the same"
         else:
@@ -27,8 +29,8 @@ def main():
 
         output_base = str(bf).split("BENIGN")[0]
         output_temp = output_base+"_temp.csv"
-        output_folder = BenignFolderPath + "/FeaturesDS/"
-        output_final = BenignFolderPath + "/FeaturesDS/"+b_base+"_Dataset.csv"
+        output_folder = AttackedFolderPath + "/FeaturesDS/"
+        output_final = AttackedFolderPath + "/FeaturesDS/"+b_base+"_Dataset.csv"
 
         #create output folder
         if not os.path.exists(output_folder):
